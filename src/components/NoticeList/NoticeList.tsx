@@ -9,7 +9,7 @@ export default function NoticeList() {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/v1/notices");
+        const response = await fetch("https://resmedx-server.vercel.app/api/v1/notices");
         const data = await response.json();
         setNotices(data);
         setFilteredNotices(data); // Initially, show all notices
@@ -64,7 +64,7 @@ export default function NoticeList() {
               </p>
               <div className="card-actions justify-end">
                 <a
-                  href={`http://localhost:5000/api/v1/notices/${notice.fileName}`}
+                  href={`https://resmedx-server.vercel.app/api/v1/notices/${notice.fileName}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"

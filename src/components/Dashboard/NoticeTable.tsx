@@ -12,7 +12,7 @@ const NoticeTable: React.FC<NoticeTableProps> = ({ notices, setNotices }) => {
     if (confirmed) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/notices/${id}`,
+          `https://resmedx-server.vercel.app/api/v1/notices/${id}`,
           {
             method: "DELETE",
           }

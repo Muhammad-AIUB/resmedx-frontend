@@ -12,7 +12,7 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/v1/notices");
+        const response = await fetch("https://resmedx-server.vercel.app/api/v1/notices");
         const data = await response.json();
         setNotices(data);
       } catch (error) {

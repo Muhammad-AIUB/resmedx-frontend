@@ -38,7 +38,7 @@ export default function NoticeUpload({ notices, setNotices }: NoticeUploadProps)
     formData.append("title", title); // Add title to form data
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/notices", {
+      const response = await fetch("https://resmedx-server.vercel.app/api/v1/notices", {
         method: "POST",
         body: formData,
       });
@@ -89,8 +89,8 @@ export default function NoticeUpload({ notices, setNotices }: NoticeUploadProps)
         {uploadStatus && (
           <p
             className={`mt-4 text-center ${uploadStatus.includes("success")
-                ? "text-green-600"
-                : "text-red-600"
+              ? "text-green-600"
+              : "text-red-600"
               }`}
           >
             {uploadStatus}

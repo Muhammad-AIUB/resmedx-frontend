@@ -14,7 +14,7 @@ export default function LoginForm() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/login", {
+      const response = await fetch("https://resmedx-server.vercel.app/api/v1/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,11 +82,10 @@ export default function LoginForm() {
           </button>
           {message && (
             <p
-              className={`mt-4 text-center ${
-                message.includes("successful")
+              className={`mt-4 text-center ${message.includes("successful")
                   ? "text-green-600"
                   : "text-red-600"
-              }`}
+                }`}
             >
               {message}
             </p>
