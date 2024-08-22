@@ -1,43 +1,32 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.jpg";
 import { useEffect, useState } from "react";
-import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  // Example state to track if user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
-  // Function to handle logout (this should be updated to actually perform logout)
-  const handleLogout = () => {
-    // Remove the token from localStorage
-    localStorage.removeItem('token');
-
-    // Redirect the user to the login page
-    window.location.href = '/login';
-  };
-
-  const token = localStorage.getItem('token');
-  if (token) {
-    console.log('User is logged in');
-    // Perform actions for a logged-in user
-  } else {
-    console.log('User is not logged in');
-    // Redirect to login page or show login prompt
-  }
-
   const router = useRouter();
 
+  // Check login status on component mount
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) {
-      // If no token is found, redirect to the login page
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
       router.push('/auth/login');
     }
-  }, []);
+  }, [router]);
 
+  // Function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    router.push('/auth/login');
+  };
 
   return (
     <div className="navbar bg-[#FAF5EC] h-20 font-semibold text-gray-600">
@@ -96,7 +85,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {token ? (
+        {isLoggedIn ? (
           <button onClick={handleLogout} className="btn btn-error">
             Logout
           </button>
